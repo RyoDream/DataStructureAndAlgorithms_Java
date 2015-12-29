@@ -27,7 +27,7 @@ public class ArraySort {
         a[two] = temp;
     }
 
-    public void bubleSort() {
+    public void bubbleSort() {
         int in,out;
 
         for (out=nElems-1;out>0;out--) {

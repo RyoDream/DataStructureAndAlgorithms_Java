@@ -25,6 +25,8 @@ public class ArraySort {
         long temp = a[one];
         a[one] = a[two];
         a[two] = temp;
+
+        display();
     }
 
     public void bubbleSort() {
@@ -35,6 +37,7 @@ public class ArraySort {
                 if (a[in] > a[in+1])
                     swap(in,in+1);
             }
+            System.out.println("n: "+out);
         }
     }
 
@@ -48,6 +51,21 @@ public class ArraySort {
                     min = in;
             }
             swap(out, min);
+        }
+    }
+
+    public void insertionSort() {
+        int in,out;
+
+        for(out=1;out<nElems;out++) {
+            long temp = a[out];
+            in = out;
+            while (in > 0 && a[in-1]>=temp) {
+                a[in] = a[in-1];
+                --in;
+            }
+            a[in] = temp;
+            display();
         }
     }
 
@@ -65,7 +83,9 @@ public class ArraySort {
 
         arr.display();
 
-        arr.selectionSort();
+//        arr.selectionSort();
+//        arr.bubbleSort();
+        arr.insertionSort();
         arr.display();
 
     }

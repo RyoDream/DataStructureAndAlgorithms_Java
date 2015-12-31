@@ -25,19 +25,16 @@ public class ArraySort {
         long temp = a[one];
         a[one] = a[two];
         a[two] = temp;
-
-        display();
     }
 
     public void bubbleSort() {
         int in,out;
 
-        for (out=nElems-1;out>0;out--) {
+        for (out=nElems-1;out>1;out--) {
             for (in=0;in<out;in++) {
                 if (a[in] > a[in+1])
                     swap(in,in+1);
             }
-            System.out.println("n: "+out);
         }
     }
 
@@ -65,7 +62,6 @@ public class ArraySort {
                 --in;
             }
             a[in] = temp;
-            display();
         }
     }
 
@@ -83,8 +79,8 @@ public class ArraySort {
 
         arr.display();
 
-//        arr.selectionSort();
 //        arr.bubbleSort();
+//        arr.selectionSort();
         arr.insertionSort();
         arr.display();
 

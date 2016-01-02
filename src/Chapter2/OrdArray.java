@@ -1,8 +1,5 @@
 package Chapter2;
 
-/**
- * Created by shiyanch on 12/28/15.
- */
 public class OrdArray {
     private long[] a;
     private int nElems;
@@ -74,30 +71,30 @@ public class OrdArray {
         System.out.println(" ");
     }
 
-//    public static void main(String[] args) {
-//        int maxSize = 5;
-//        OrdArray arr = new OrdArray(maxSize);
-//
-//        arr.insert(22);
-//        arr.insert(12);
-//        arr.insert(89);
-//        arr.insert(3);
-//        arr.insert(48);
-//
-//        arr.display();
-//
-//        int searchKey = 13;
-//        System.out.println(arr.find(searchKey));
-//
-//        arr.delete(22);
-//        arr.display();
-//
-//        int deleteKey = 33;
-//        if(!arr.delete(deleteKey))
-//            System.out.println("Can't delete " + deleteKey);
-//
-//        arr.insert(1);
-//        arr.display();
-//        arr.insert(28);
-//    }
+    public static void main(String[] args) {
+        int maxSize = 5;
+        OrdArray arr = new OrdArray(maxSize);
+
+        arr.insert(22);
+        arr.insert(12);
+        arr.insert(89);
+        arr.insert(3);
+        arr.insert(48);
+
+        arr.display();
+
+        int searchKey = 13;
+        System.out.println(arr.find(searchKey));
+
+        arr.delete(22);
+        arr.display();
+
+        int deleteKey = 33;
+        if(!arr.delete(deleteKey))
+            System.out.println("Can't delete " + deleteKey);
+
+        arr.insert(1);
+        arr.display();
+        arr.insert(28);
+    }
 }

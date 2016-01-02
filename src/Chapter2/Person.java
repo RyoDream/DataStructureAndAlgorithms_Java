@@ -1,8 +1,5 @@
 package Chapter2;
 
-/**
- * Created by shiyanch on 12/28/15.
- */
 public class Person {
     private String lastName;
     private String firstName;
@@ -35,7 +32,7 @@ class ClassDataArray {
     }
 
     public Person find(String searchName) {
-        int i=0;
+        int i;
         for (i=0;i<nElems;i++) {
             if(a[i].getLast().equals(searchName))
                 return a[i];
@@ -76,34 +73,34 @@ class ClassDataArray {
     }
 }
 
-//class ClassDataApp
-//{
-//    public static void main(String[] args)
-//    {
-//        int maxSize=3;
-//        ClassDataArray arr = new ClassDataArray(maxSize);
-//
-//        arr.insert("Evans","Patty",20);
-//        arr.insert("Chris","Quan",24);
-//        arr.insert("Ryo", "Dream", 24);
-//        arr.insert("Adams", "Henry", 32);
-//
-//        arr.displayA();
-//
-//        String searchKey = "Simon";
-//        Person found = arr.find(searchKey);
-//
-//        if(found != null) {
-//            found.displayPerson();
-//        }
-//        else System.out.println("Can't find "+searchKey);
-//
-//        arr.delete("Adams");
-//        arr.delete("Hehe");
-//
-//        arr.displayA();
-//    }
-//}
+class ClassDataApp
+{
+    public static void main(String[] args)
+    {
+        int maxSize=3;
+        ClassDataArray arr = new ClassDataArray(maxSize);
+
+        arr.insert("Evans","Patty",20);
+        arr.insert("Chris","Quan",24);
+        arr.insert("Ryo", "Dream", 24);
+        arr.insert("Adams", "Henry", 32);
+
+        arr.displayA();
+
+        String searchKey = "Simon";
+        Person found = arr.find(searchKey);
+
+        if(found != null) {
+            found.displayPerson();
+        }
+        else System.out.println("Can't find "+searchKey);
+
+        arr.delete("Adams");
+        arr.delete("Hehe");
+
+        arr.displayA();
+    }
+}
 
 
 

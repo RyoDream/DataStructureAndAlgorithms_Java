@@ -132,11 +132,11 @@ public class ArraySort {
 
         arr.display();
 
-//        arr.bubbleSort();
-//        arr.selectionSort();
-//        arr.insertionSort();
-//        arr.shakedBubbleSort();
-//        arr.display();
+        arr.bubbleSort();
+        arr.selectionSort();
+        arr.insertionSort();
+        arr.shakedBubbleSort();
+        arr.display();
 
         arr.noDups();
         arr.display();

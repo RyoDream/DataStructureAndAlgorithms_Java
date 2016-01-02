@@ -1,8 +1,5 @@
 package Chapter2;
 
-/**
- * Created by shiyanch on 12/28/15.
- */
 public class HighArray {
     private long[] a;
     private int nElems;
@@ -28,7 +25,7 @@ public class HighArray {
     }
 
     public boolean delete(long value) {
-        int i=0;
+        int i;
         for(i=0;i<nElems;i++) {
             if (a[i] == value)
                 break;
@@ -52,31 +49,31 @@ public class HighArray {
         System.out.println(" ");
     }
 
-//    public static void main(String[] args) {
-//        int maxSize = 4;
-//        HighArray arr = new HighArray(maxSize);
-//
-//        arr.insert(77);
-//        arr.insert(12);
-//        arr.insert(89);
-//        arr.insert(3);
-//        arr.insert(48);
-//
-//        arr.display();
-//
-//        int searchKey = 13;
-//        if(arr.find(searchKey))
-//            System.out.println("Found " + searchKey);
-//        else
-//            System.out.println("Can't find " + searchKey);
-//
-//
-//        arr.delete(3);
-//        arr.display();
-//
-//        int deleteKey = 48;
-//        if(!arr.delete(deleteKey))
-//            System.out.println("Can't delete " + deleteKey);
-//        else arr.display();
-//    }
+    public static void main(String[] args) {
+        int maxSize = 4;
+        HighArray arr = new HighArray(maxSize);
+
+        arr.insert(77);
+        arr.insert(12);
+        arr.insert(89);
+        arr.insert(3);
+        arr.insert(48);
+
+        arr.display();
+
+        int searchKey = 13;
+        if(arr.find(searchKey))
+            System.out.println("Found " + searchKey);
+        else
+            System.out.println("Can't find " + searchKey);
+
+
+        arr.delete(3);
+        arr.display();
+
+        int deleteKey = 48;
+        if(!arr.delete(deleteKey))
+            System.out.println("Can't delete " + deleteKey);
+        else arr.display();
+    }
 }

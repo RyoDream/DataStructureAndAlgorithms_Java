@@ -80,6 +80,36 @@ public class FirstLastList {
         }
     }
 
+    public Node delete(int key) {
+        if(isEmpty())
+            return null;
+
+        Node current = first;
+        Node previous = first;
+
+        while(current.iData != key) {
+            if(current.next == null)
+                return null;
+
+            previous = current;
+            current = current.next;
+        }
+
+        if(current == first) {
+            if(current == last)
+                last = current.next;
+            first = current.next;
+        }
+        else {
+            if (current == last)
+                last = previous;
+            previous.next = current.next;
+        }
+
+        current.next = null;
+        return current;
+    }
+
     public static void main(String[] args) {
         FirstLastList list = new FirstLastList();
 
@@ -92,6 +122,9 @@ public class FirstLastList {
         list.insertLast(33, 3.99);
         list.insertLast(55, 5.99);
 
+        list.displayList();
+
+        list.delete(44);
         list.displayList();
 
         while (!list.isEmpty()) {

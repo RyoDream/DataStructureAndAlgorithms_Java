@@ -47,8 +47,8 @@ public class DoublyLinkedList {
             first = newNode;        // first --> newNode
         else {
             last.next = newNode;    // old last --> newNode
-            newNode.prev = last;    // old last <-- newNode
         }
+        newNode.prev = last;        // old last <-- newNode
         last = newNode;             // newNode <-- last
     }
 
@@ -57,7 +57,7 @@ public class DoublyLinkedList {
             return null;
 
         DoublyNode temp = first;
-        if (first.next == null)      // if only one item
+        if (first.next == null)     // if only one item
             last = null;            // null <-- last
         else
             first.next.prev = null; // null <-- old next
@@ -73,13 +73,12 @@ public class DoublyLinkedList {
 
         DoublyNode temp = last;
 
-        if (last.prev == null)
-            first = null;
+        if (last.prev == null)      // if only one item
+            first = null;           // first --> null
         else
-            last.prev.next = null;
+            last.prev.next = null;  // old previous --> null
 
-        last = last.prev;
-
+        last = last.prev;           // old previous <-- last
         temp.prev = null;
         return temp;
     }

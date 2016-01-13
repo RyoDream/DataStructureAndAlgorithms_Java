@@ -12,6 +12,10 @@ public class LinkList {
         return (first == null);
     }
 
+    public ListIterator getIterator() {
+        return new ListIterator(this);
+    }
+
     public void insertFirst(int id, double dd) {
         Node newNode = new Node(id, dd);
         newNode.next = first;
@@ -70,6 +74,14 @@ public class LinkList {
 
         current.next = null;
         return current;
+    }
+
+    public Node getFirst() {
+        return first;
+    }
+
+    public void setFirst(Node first) {
+        this.first = first;
     }
 
     public static void main(String[] args) {

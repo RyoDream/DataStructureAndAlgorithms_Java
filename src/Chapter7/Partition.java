@@ -34,10 +34,10 @@ public class Partition {
 
         while (true) {
 
-            while (leftPtr < right && theArray[++leftPtr] < pivot)
+            while (theArray[++leftPtr] < pivot)
                 ;
 
-            while (rightPtr > left && theArray[--rightPtr] > pivot)
+            while (theArray[--rightPtr] > pivot)
                 ;
 
             if (leftPtr >= rightPtr)

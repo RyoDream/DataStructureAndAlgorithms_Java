@@ -45,7 +45,11 @@ public class Partition {
             else
                 swap(leftPtr, rightPtr);
         }
+        // return index of first element larger that pivot
         return leftPtr;
+
+        // return index of first element less than pivot
+        // return rightPtr;
     }
 
     public void swap(int index1, int index2) {

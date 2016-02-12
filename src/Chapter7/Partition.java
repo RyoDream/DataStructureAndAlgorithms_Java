@@ -34,10 +34,12 @@ public class Partition {
 
         while (true) {
 
-            while (theArray[++leftPtr] < pivot)
+            // leftPtr < right 是为了防止pivot大于所有元素,则leftPtr会向右越界
+            while (leftPtr < right && theArray[++leftPtr] < pivot)
                 ;
 
-            while (theArray[--rightPtr] > pivot)
+            // rightPtr > left 是为了防止pivot小于所有元素,则rightPtr会向左越界
+            while (rightPtr > left && theArray[--rightPtr] > pivot)
                 ;
 
             if (leftPtr >= rightPtr)

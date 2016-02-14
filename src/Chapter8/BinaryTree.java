@@ -213,17 +213,24 @@ public class BinaryTree {
     public void displayTree() {
         Stack globalStack = new Stack();
         globalStack.push(root);
+        // 光标移动的初始值
         int nBlanks = 32;
         boolean isRowEmpty = false;
         System.out.println("**********************************************************************");
 
+        // 如果下一层是空,则结束循环,整棵树均打印完成
         while (!isRowEmpty) {
             Stack localStack = new Stack();
+            // 默认下一层是空
             isRowEmpty = true;
 
             for (int i = 0; i < nBlanks; i++)
                 System.out.print(' ');
 
+            // globalStack存储的是当前这一层的节点
+            // 每次while循环,将打印当前层节点,并更新下一层节点到localStack中
+            // 如果下一层localStack中有非null元素,则表示需要打印下一层,isRowEmpty=false
+            // 如果该层节点均无子节点,则isRowEmpty=true,整棵树打印完成
             while (!globalStack.isEmpty()) {
                 Node temp = (Node) globalStack.pop();
                 if (temp != null) {
@@ -231,20 +238,26 @@ public class BinaryTree {
                     localStack.push(temp.leftChild);
                     localStack.push(temp.rightChild);
 
+                    // 该层节点有子节点,则下一层不为空
                     if (temp.leftChild != null || temp.rightChild != null)
                         isRowEmpty = false;
                 } else {
+                    // 为了打印出节点的对应位置,需要维护空节点的位置
                     System.out.print("--");
                     localStack.push(null);
                     localStack.push(null);
                 }
 
+                // 移动光标位置,将要打印同一层的兄弟节点(父节点的右子节点)
                 for (int i = 0; i < nBlanks * 2 - 2; i++)
                     System.out.print(' ');
             }
 
+            // 打印完了本层节点,换行准备打印下一层节点
             System.out.println();
+            // 减小光标移动的位置
             nBlanks /= 2;
+            // 将下一层节点信息更新到globalStack中
             while (!localStack.isEmpty())
                 globalStack.push(localStack.pop());
         }

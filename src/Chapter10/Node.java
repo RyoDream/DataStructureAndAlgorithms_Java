@@ -55,6 +55,9 @@ public class Node {
         return -1;
     }
 
+    // always insert into leaf node
+    // only shift exist array
+    // do nothing with child array
     public int insertItem(DataItem newItem) {
         // assumes node is not full
         numItems++;

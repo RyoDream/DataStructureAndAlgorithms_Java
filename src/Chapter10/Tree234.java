@@ -16,6 +16,7 @@ public class Tree234 {
         }
     }
 
+    // new item always inserted into leaf node (bottom level)
     public void insert(int value) {
         Node curNode = root;
         DataItem tempItem = new DataItem(value);
@@ -31,6 +32,7 @@ public class Tree234 {
                 curNode = getNextChild(curNode, value);
         }
 
+        // always insert into leaf node
         curNode.insertItem(tempItem);
     }
 
@@ -57,6 +59,7 @@ public class Tree234 {
         itemIndex = parent.insertItem(itemB);
         int n = parent.getNumItems();
 
+        // maintain child array
         for (int i = n - 1; i > itemIndex; i--) {
             Node temp = parent.disconnectChild(i);
             parent.connectChild(i + 1, temp);
@@ -79,7 +82,7 @@ public class Tree234 {
             if (theValue < theNode.getItem(i).iData)
                 return theNode.getChild(i);
         }
-        return theNode.getChild(i);
+        return theNode.getChild(i); // return right child of the last item
     }
 
     public void displayTree() {
@@ -100,6 +103,76 @@ public class Tree234 {
         }
     }
 
+    // assume the tree is not empty
+    public int getMinValue() {
+        Node parent = root;
+        Node current = root;
+
+        while (current != null) {
+            parent = current;
+            current = current.getChild(0);
+        }
+
+        return parent.getItem(0).iData;
+    }
+
+    public void traverse(int traverseType) {
+        switch (traverseType) {
+            case 1:
+                System.out.println("Preorder traverse");
+                // preOrder(root);
+                break;
+            case 2:
+                System.out.println("Inorder traverse");
+                inOrder(root);
+                System.out.println("");
+                break;
+            case 3:
+                System.out.println("Postorder traverse");
+                // postOrder(root);
+                break;
+        }
+    }
+
+    public void inOrder(Node root) {
+        if (root == null)
+            return;
+
+        int i = 0;
+        for (; i < root.getNumItems(); i++) {
+            inOrder(root.getChild(i));
+            System.out.print(root.getItem(i).iData + " ");
+        }
+
+        if (i != 0) {
+            inOrder(root.getChild(i));
+        }
+    }
+
+    public void sort(int[] array) {
+        this.root = new Node();
+        for (int i : array) {
+            this.insert(i);
+        }
+        inOrderForSort(array, root, 0);
+    }
+
+    public int inOrderForSort(int[] array, Node root, int arrayIndex) {
+        if (root == null)
+            return arrayIndex;
+
+        int i = 0;
+        for (; i < root.getNumItems(); i++) {
+            arrayIndex = inOrderForSort(array, root.getChild(i), arrayIndex);
+            array[arrayIndex++] = root.getItem(i).iData;
+        }
+
+        if (i != 0) {
+            arrayIndex = inOrderForSort(array, root.getChild(i), arrayIndex);
+        }
+
+        return arrayIndex;
+    }
 
     public static void main(String[] args) {
         int value;
@@ -117,5 +190,13 @@ public class Tree234 {
         theTree.displayTree();
 
         theTree.find(30);
+
+        System.out.println(theTree.getMinValue());
+        theTree.traverse(2);
+
+        int[] array = {1, 3, 2, 5, 7, 8, 4, 9};
+        theTree.sort(array);
+        for (int i : array)
+            System.out.print(i + " ");
     }
 }

@@ -13,6 +13,9 @@ public class PriorityQ {
 
 
     public void insert(Edge item) {
+        if (isFull())
+            return;
+
         int i;
 
         // find place to insert

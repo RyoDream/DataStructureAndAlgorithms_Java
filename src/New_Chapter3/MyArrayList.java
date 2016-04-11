@@ -1,6 +1,8 @@
 package New_Chapter3;
 
 
+import java.util.Iterator;
+
 public class MyArrayList<AnyType> implements Iterable<AnyType> {
     private static final int DEFAULT_CAPACITY = 10;
 
@@ -65,6 +67,14 @@ public class MyArrayList<AnyType> implements Iterable<AnyType> {
             theItems[i] = theItems[i - 1];
         theItems[idx] = x;
         theSize++;
+    }
+
+    // problem 3_9
+    public void addAll(Iterable<? extends AnyType> items) {
+        Iterator<? extends AnyType> iter = items.iterator();
+        while (iter.hasNext()) {
+            add(iter.next());
+        }
     }
 
     public AnyType remove(int idx) {

@@ -125,6 +125,32 @@ public class MyLinkedList<AnyType> implements Iterable<AnyType> {
         modCount++;
     }
 
+    // problem 3_10
+    public void removeAll(Iterable<? extends AnyType> items) {
+        Iterator<? extends AnyType> iterItems = items.iterator();
+        AnyType item, element;
+
+        while (iterItems.hasNext()) {
+            item = iterItems.next();
+            Iterator<? extends AnyType> iterList = iterator();
+
+            while (iterList.hasNext()) {
+                element = iterList.next();
+                if (element.equals(item))
+                    iterList.remove();
+            }
+        }
+    }
+
+    // problem 3_3
+    public boolean contains(AnyType x) {
+        Node<AnyType> node = beginMarker.next;
+        while (node != endMarker && !(node.data.equals(x)))
+            node = node.next;
+
+        return (node != endMarker);
+    }
+
     public java.util.Iterator<AnyType> iterator() {
         return new LinkedListIterator();
     }

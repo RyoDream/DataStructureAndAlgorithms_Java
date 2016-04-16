@@ -125,6 +125,31 @@ public class MyLinkedList<AnyType> implements Iterable<AnyType> {
         modCount++;
     }
 
+    // problem 3_18
+    public void addFirst(AnyType x) {
+        addBefore(beginMarker.next, x);
+    }
+
+    public void addLast(AnyType x) {
+        addBefore(endMarker, x);
+    }
+
+    public void removeFirst() {
+        remove(beginMarker.next);
+    }
+
+    public void removeLast() {
+        remove(endMarker.prev);
+    }
+
+    public AnyType getFirst() {
+        return get(0);
+    }
+
+    public AnyType getLast() {
+        return get(size() - 1);
+    }
+
     // problem 3_10
     public void removeAll(Iterable<? extends AnyType> items) {
         Iterator<? extends AnyType> iterItems = items.iterator();

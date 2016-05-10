@@ -128,4 +128,23 @@ public class Problems {
             }
         }
     }
+
+    // 3_29
+    public void reverseList(Node head) {
+        Node currentPos, nextPos, previousPos;
+
+        previousPos = null;
+        currentPos = head.next;
+        nextPos = currentPos.next;
+
+        while (nextPos != null) {
+            currentPos.next = previousPos;
+            previousPos = currentPos;
+            currentPos = nextPos;
+            nextPos = nextPos.next;
+        }
+
+        currentPos.next = previousPos;
+        head.next = currentPos;
+    }
 }

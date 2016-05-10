@@ -134,12 +134,12 @@ public class MyLinkedList<AnyType> implements Iterable<AnyType> {
         addBefore(endMarker, x);
     }
 
-    public void removeFirst() {
-        remove(beginMarker.next);
+    public AnyType removeFirst() {
+        return remove(beginMarker.next);
     }
 
-    public void removeLast() {
-        remove(endMarker.prev);
+    public AnyType removeLast() {
+        return remove(endMarker.prev);
     }
 
     public AnyType getFirst() {

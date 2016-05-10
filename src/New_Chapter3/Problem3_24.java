@@ -34,7 +34,7 @@ public class Problem3_24 {
     public void push(Object o, int flag) {
         if (isFull()) {
             try {
-                throw new Exception("栈已满");
+                throw new Exception("Stack is full.");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -50,7 +50,7 @@ public class Problem3_24 {
     public Object pop(int flag) {
         if (isEmpty(flag)) {
             try {
-                throw new Exception("栈空了");
+                throw new Exception("Stack is empty");
             } catch (Exception e) {
                 e.printStackTrace();
             }

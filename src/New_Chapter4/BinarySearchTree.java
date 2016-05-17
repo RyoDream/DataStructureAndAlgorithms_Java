@@ -170,4 +170,44 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
     private void printTree(BinaryNode<AnyType> t) {
 
     }
+
+    /**
+     * Count number of nodes in a subtree.
+     *
+     * @param root the node that roots the subtree.
+     * @return the number of all nodes.
+     */
+    public int countNodes(BinaryNode root) {
+        if (root == null)
+            return 0;
+
+        return 1 + countNodes(root.left) + countNodes(root.right);
+    }
+
+    /**
+     * Count number of leaves in a subtree.
+     *
+     * @param root the node that roots the subtree.
+     * @return the number of all leaves.
+     */
+    public int countLeaves(BinaryNode root) {
+        if (root == null)
+            return 0;
+
+        if (root.left == null && root.right == null)
+            return 1;
+
+        return countLeaves(root.left) + countLeaves(root.right);
+    }
+
+    public int countFull(BinaryNode root) {
+        if (root == null)
+            return 0;
+
+        int isFull = (root.left != null && root.right != null) ?
+                1 : 0;
+
+        return isFull + countFull(root.left) + countFull(root.right);
+    }
+
 }

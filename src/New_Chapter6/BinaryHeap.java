@@ -4,6 +4,8 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> {
 
     private static final int DEFAULT_CAPACITY = 100;
     private int currentSize;
+
+    // IMPORTANT: index starts from 1
     private AnyType[] array;
 
     public BinaryHeap() {

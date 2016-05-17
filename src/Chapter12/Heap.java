@@ -10,6 +10,8 @@ import java.io.InputStreamReader;
  * 1. 它的父节点的下标是(x-1)/2
  * 2. 它的左子节点的下标是2*x+1
  * 3. 它的右子节点的下标是2*x+2
+ *
+ * heapArray[0].getKey()是整个堆的最大值
  */
 public class Heap {
     private Node[] heapArray;

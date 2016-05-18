@@ -72,7 +72,17 @@ public class SeparateChainingHashTable<AnyType> {
 
 
     private void rehash() {
+        List<AnyType>[] oldLists = theLists;
 
+        theLists = new List[nextPrime(2 * theLists.length)];
+
+        for (int i = 0; i < theLists.length; i++)
+            theLists[i] = new LinkedList<AnyType>();
+
+        currentSize = 0;
+        for (int i = 0; i < oldLists.length; i++)
+            for (AnyType item : oldLists[i])
+                insert(item);
     }
 
     // x必须提供equals方法和返回int型的hashCode方法

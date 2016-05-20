@@ -3,6 +3,7 @@ package New_Chapter7;
 import java.util.Objects;
 
 public class Sorting {
+    private static final int CUTOFF = 10;
 
     /**
      * Simple insertion sort.
@@ -163,6 +164,89 @@ public class Sorting {
         for (int i = 0; i < numElement; i++, rightEnd--)
             array[rightEnd] = tempArray[rightEnd];
     }
+
+    /**
+     * Quicksort algorithm
+     *
+     * @param array an array of Comparable items.
+     */
+    public static <AnyType extends Comparable<? super AnyType>>
+    void quicksort(AnyType[] array) {
+        quicksort(array, 0, array.length - 1);
+    }
+
+    /**
+     * Internal quicksort method that makes recursive calls.
+     * Use median-of-three partitioning and a cutoff of 10
+     *
+     * @param array an array of Comparable items.
+     * @param left  the left-most index of the subarray.
+     * @param right the right-most index of the subarray.
+     */
+    private static <AnyType extends Comparable<? super AnyType>>
+    void quicksort(AnyType[] array, int left, int right) {
+        if (left + CUTOFF <= right) {
+            AnyType pivot = median3(array, left, right);
+
+            int i = left, j = right - 1;
+            while (i < j) {
+                while (array[++i].compareTo(pivot) < 0) {
+                }
+                while (array[--j].compareTo(pivot) > 0) {
+                }
+
+                if (i < j)
+                    swapReferences(array, i, j);
+            }
+
+            swapReferences(array, i, right - 1);
+
+            quicksort(array, left, i - 1);
+            quicksort(array, i + 1, right);
+        } else
+            insertionSort(array, left, right);
+    }
+
+    /**
+     * Internal insertion sort routine for subarrays
+     * that is used by quicksort.
+     *
+     * @param a     an array of Comparable items.
+     * @param left  the left-most index of the subarray.
+     * @param right the right-most index of the subarray.
+     */
+    private static void insertionSort(Comparable[] a, int left, int right) {
+        for (int p = left + 1; p <= right; p++) {
+            Comparable temp = a[p];
+            int j;
+
+            for (j = p; j > left && temp.compareTo(a[j - 1]) < 0; j--)
+                a[j] = a[j - 1];
+            a[j] = temp;
+        }
+    }
+
+    /**
+     * Return median of left, center, and right
+     * Order these and hid the pivot.
+     */
+    private static <AnyType extends Comparable<? super AnyType>>
+    AnyType median3(AnyType[] array, int left, int right) {
+        int center = (left + right) / 2;
+        if (array[center].compareTo(array[left]) < 0)
+            swapReferences(array, left, right);
+
+        if (array[right].compareTo(array[left]) < 0)
+            swapReferences(array, left, right);
+
+        if (array[right].compareTo(array[center]) < 0)
+            swapReferences(array, center, right);
+
+        // Place pivot at position right-1
+        swapReferences(array, center, right - 1);
+        return array[right - 1];
+    }
+
 
     public static void main(String[] args) {
         shellSort(new Integer[]{1, 2, 3, 4, 7, 3, 5, 4, 6});

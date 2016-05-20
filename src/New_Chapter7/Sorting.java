@@ -1,5 +1,7 @@
 package New_Chapter7;
 
+import java.util.Objects;
+
 public class Sorting {
 
     /**
@@ -36,6 +38,130 @@ public class Sorting {
                 array[j] = temp;
             }
         }
+    }
+
+    public static <AnyType extends Comparable<? super AnyType>>
+    void heapsort(AnyType[] array) {
+        // build heap
+        for (int i = array.length / 2; i >= 0; i--)
+            percolateDown(array, i, array.length);
+
+        // deleteMax
+        for (int i = array.length - 1; i > 0; i--) {
+            swapReferences(array, 0, i);
+            percolateDown(array, 0, i);
+        }
+    }
+
+    /**
+     * Method to swap two elements in an array.
+     *
+     * @param array  an array of objects.
+     * @param index1 the index of the first object.
+     * @param index2 the index of the second object.
+     */
+    public static final void swapReferences(Object[] array, int index1, int index2) {
+        Object temp = array[index1];
+        array[index1] = array[index2];
+        array[index2] = temp;
+    }
+
+
+    /**
+     * Internal method for heapsort.
+     *
+     * @param i the index of an item in the heap.
+     * @return the index of the left child.
+     */
+    public static int leftChild(int i) {
+        return 2 * i + 1;
+    }
+
+    /**
+     * Internal method for heapsort that is used in deleteMin and buildHeap
+     *
+     * @param array     an array of Comparable items.
+     * @param i         the position from which to percolate down.
+     * @param n         the logical size of the binary heap.
+     * @param <AnyType>
+     */
+    private static <AnyType extends Comparable<? super AnyType>>
+    void percolateDown(AnyType[] array, int i, int n) {
+        int child;
+        AnyType temp;
+
+        for (temp = array[i]; leftChild(i) < n; i = child) {
+            child = leftChild(i);
+            if (child != n - 1 && array[child].compareTo(array[child + 1]) < 0)
+                child++;
+            if (temp.compareTo(array[child]) < 0)
+                array[i] = array[child];
+            else break;
+        }
+
+        array[i] = temp;
+    }
+
+    /**
+     * Internal method that makes recursive calls.
+     *
+     * @param array     an array of Comparable items.
+     * @param tempArray an array to place the merged result.
+     * @param left      the left-most index of the subarray.
+     * @param right     the right-most index of the subarray.
+     */
+    private static <AnyType extends Comparable<? super AnyType>>
+    void mergeSort(AnyType[] array, AnyType[] tempArray, int left, int right) {
+        if (left < right) {
+            int center = (left + right) / 2;
+            mergeSort(array, tempArray, left, center);
+            mergeSort(array, tempArray, center + 1, right);
+            merge(array, tempArray, left, center + 1, right);
+        }
+    }
+
+    /**
+     * Mergesort algorithm.
+     *
+     * @param array an array of Comparable items.
+     */
+    public static <AnyType extends Comparable<? super AnyType>>
+    void mergeSort(AnyType[] array) {
+        AnyType[] temp = (AnyType[]) new Comparable[array.length];
+        mergeSort(array, temp, 0, array.length - 1);
+    }
+
+    /**
+     * Internal method to merge two sorted halves of a subarray.
+     *
+     * @param array     an array of Comparable items.
+     * @param tempArray an array to place the merged result.
+     * @param leftPos   the left-most index of the subarray.
+     * @param rightPos  the index of the start of the second half.
+     * @param rightEnd  the right-most index of the subarray.
+     */
+    private static <AnyType extends Comparable<? super AnyType>>
+    void merge(AnyType[] array, AnyType[] tempArray, int leftPos, int rightPos, int rightEnd) {
+        int leftEnd = rightPos - 1;
+        int tempPos = leftPos;
+        int numElement = rightEnd - leftPos + 1;
+
+        while (leftPos <= leftEnd && rightPos <= rightEnd) {
+
+            if (array[leftPos].compareTo(array[rightPos]) <= 0)
+                tempArray[tempPos++] = array[leftPos++];
+            else
+                tempArray[tempPos++] = array[rightPos++];
+        }
+
+        while (leftPos <= leftEnd)
+            tempArray[tempPos++] = array[leftPos++];
+
+        while (rightPos <= rightEnd)
+            tempArray[tempPos++] = array[rightPos++];
+
+        for (int i = 0; i < numElement; i++, rightEnd--)
+            array[rightEnd] = tempArray[rightEnd];
     }
 
     public static void main(String[] args) {
